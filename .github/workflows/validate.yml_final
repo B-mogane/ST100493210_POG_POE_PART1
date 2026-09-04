@@ -1,0 +1,43 @@
+name: Validate Part 1 Structure
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check for required documentation files
+        run: |
+          echo "Checking /docs folder contents..."
+          if [ ! -d "docs" ]; then
+            echo "ERROR: /docs folder not found."
+            exit 1
+          fi
+         
+          if [ ! -f "docs/ERD.pdf" ]; then
+            echo "ERROR: ERD image (ERD.png or ERD.pdf) missing in /docs."
+            exit 1
+          fi
+         
+          if [ ! -f "docs/API-Endpoints.docx" ] ; then
+            echo "ERROR: API Endpoint Plan (API-Endpoints.docx) missing in /docs."
+            exit 1
+          fi
+         
+          if [ ! -f "docs/RaceDay.sql" ]; then
+            echo "ERROR: SQL script RaceDay.sql missing in /docs."
+            exit 1
+          fi
+          
+          if [ ! -f "README.md" ]; then
+            echo "ERROR: README.md missing at repository root."
+            exit 1
+          fi
+          echo "All required files present. Validation passed."
