@@ -179,3 +179,45 @@ VALUES
     (2, 'Long Route (109km)', 109.00, 1000, 500.00);
 GO
 
+
+INSERT INTO dbo.Category 
+    (EventID, CategoryName, DistanceKm, MaxParticipants, Fee)
+VALUES
+    (3, '5km Fun Walk', 5.00, 2000, 80.00);
+GO
+
+
+  
+INSERT INTO dbo.Enrolment 
+    (UserID, CategoryID, EnrolmentDate, Status)
+VALUES
+    (3, 1, GETDATE(), 'Confirmed'),
+    (4, 2, GETDATE(), 'Confirmed'),
+    (3, 4, GETDATE(), 'Confirmed');
+GO
+
+
+
+INSERT INTO dbo.Result 
+    (EnrolmentID, FinishTime, Position, Notes)
+VALUES
+    (1, '01:05:23', 125, 'Great run!');
+GO
+
+
+
+INSERT INTO dbo.Payment 
+    (EnrolmentID, Amount, PaymentDate, PaymentMethod, TransactionID)
+VALUES
+    (1, 150.00, GETDATE(), 'Credit Card', 'TXN123456');
+GO
+
+
+SELECT * FROM dbo.[User];
+SELECT * FROM dbo.[Event];
+SELECT * FROM dbo.Category;
+SELECT * FROM dbo.Enrolment;
+SELECT * FROM dbo.Result;
+SELECT * FROM dbo.Payment;
+GO
+
