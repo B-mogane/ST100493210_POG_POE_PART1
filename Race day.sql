@@ -171,3 +171,11 @@ VALUES
     (1, '42km Full Marathon', 42.20, 500, 350.00);
 GO
 
+
+INSERT INTO dbo.Category 
+    (EventID, CategoryName, DistanceKm, MaxParticipants, Fee)
+VALUES
+    (2, 'Short Route (47km)', 47.00, 2000, 400.00),
+    (2, 'Long Route (109km)', 109.00, 1000, 500.00);
+GO
+
